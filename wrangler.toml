@@ -1,13 +1,9 @@
 name = "mudaedit"
-type = "javascript"
+main = "src/index.js"
 
 account_id = "fb3edb8c37a1b4659c53c7fbb2ba7107"
 workers_dev = true
 compatibility_date = "2023-07-15"
-
-[site]
-bucket = "./site"
-entry-point = "src"
 
 [env]
 DUCKDNS_HOSTNAME = "${DUCKDNS_HOSTNAME}"
