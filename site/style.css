@@ -1,0 +1,91 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #2c2f33;
+    color: #fff;
+}
+#list-input1, #list-input2 {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 20px;
+}
+#list-display {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+.harem-info h1 {
+    display: inline-flex;
+    justify-content: flex-start; /* Align kakera to the left */
+    align-items: baseline;
+}
+.series {
+    margin-bottom: 20px;
+}
+.character {
+    background-color: #23272a;
+    border-left: 5px solid;
+    padding: 10px;
+    margin-bottom: 10px;
+    min-width: 10em;
+    position: relative; /* Needed for tooltip positioning */
+}
+.character h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #ffcc00;
+    text-overflow:ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.character p {
+    margin: 5px 0;
+    text-overflow:ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.character img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 10px;
+}
+.inline-icon {
+    width: 1em;
+    height: auto; /* Maintain aspect ratio */
+    vertical-align: baseline; /* Align the image vertically in the middle */
+}
+.inline-p {
+    display: inline-flex;
+    align-items: baseline;
+}
+.position-container {
+    display: flex;
+    justify-content: flex-start; /* Align position to the left */
+    margin-right: auto;
+    vertical-align: baseline; /* Align the image vertically in the middle */
+}
+.kakera-container {
+    display: flex;
+    justify-content: center; /* Align kakera to the center */
+    margin-right: auto; 
+    margin-left: auto; 
+}
+.key-container {
+    display: flex;
+    justify-content: flex-end; /* Align key to the right */
+    margin-left: auto; /* Push the key to the far right */
+}
+.position-kakera-key-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+#tooltip {
+    position: absolute;
+    background-color: #2c2f33;
+    color: #fff;
+    padding: 5px;
+    stop-color: #fff;
+    pointer-events: none;
+    display: none;
+    z-index: 10;
+}
