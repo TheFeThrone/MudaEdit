@@ -1,0 +1,46 @@
+name: Deploy to Cloudflare Workers
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Update Dynamic DNS
+      run: python scripts/update_dns.py
+      env:
+        DUCKDNS_HOSTNAME: ${{ secrets.DUCKDNS_HOSTNAME }}
+        DUCKDNS_TOKEN: ${{ secrets.DUCKDNS_TOKEN }}
+
+    - name: Install Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+
+    - name: Install Wrangler
+      run: npm install -g @cloudflare/wrangler
+
+    - name: Deploy to Cloudflare Workers
+      run: wrangler deploy
+      env:
+        CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        DUCKDNS_HOSTNAME: ${{ secrets.DUCKDNS_HOSTNAME }}
+        DUCKDNS_TOKEN: ${{ secrets.DUCKDNS_TOKEN }}
+        CORS_PROXY: ${{ secrets.CORS_PROXY }}
